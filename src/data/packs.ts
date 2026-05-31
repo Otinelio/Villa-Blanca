@@ -1,0 +1,48 @@
+export interface Pack {
+  id: string;
+  name: string;
+  icon: "party" | "briefcase" | "heart" | "users";
+  min: string;
+  includes: string[];
+  price: string;
+  cta: string;
+}
+
+export const PACKS: Pack[] = [
+  {
+    id: "anniv",
+    name: "Pack Anniversaire",
+    icon: "party",
+    min: "Min. 10 personnes",
+    includes: ["Salle décorée", "Gâteau personnalisé", "Menu spécial 3 plats", "Boissons incluses"],
+    price: "À partir de 75 000 FCFA (10 pers.)",
+    cta: "Demander un Devis",
+  },
+  {
+    id: "business",
+    name: "Pack Business / Séminaire",
+    icon: "briefcase",
+    min: "Min. 15 personnes",
+    includes: ["Salle de réunion", "Déjeuner buffet", "Vidéoprojecteur", "WiFi renforcé"],
+    price: "À partir de 150 000 FCFA (demi-journée)",
+    cta: "Nous Contacter",
+  },
+  {
+    id: "mariage",
+    name: "Pack Mariage / Réception",
+    icon: "heart",
+    min: "Sur devis",
+    includes: ["Salle privatisée", "Décoration florale", "Menu gastronomique", "Bar ouvert 4h"],
+    price: "Sur devis personnalisé",
+    cta: "Planifier votre événement",
+  },
+  {
+    id: "vip",
+    name: "Pack VIP Groupe Amis",
+    icon: "users",
+    min: "Min. 8 personnes",
+    includes: ["Table réservée", "Plateau grillades mixte", "Bouteilles incluses", "Playlist personnalisée"],
+    price: "À partir de 60 000 FCFA",
+    cta: "Réserver",
+  },
+];
