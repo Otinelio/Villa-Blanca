@@ -1,0 +1,62 @@
+import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
+import { P as PageTransition } from "./PageTransition-GNdNW4Ws.mjs";
+import { A as AnimatePresence, m as motion } from "../_libs/framer-motion.mjs";
+import { X, f as ChevronLeft, g as ChevronRight } from "../_libs/lucide-react.mjs";
+import "../_libs/motion-dom.mjs";
+import "../_libs/motion-utils.mjs";
+const FILTERS = ["Tout", "Pizzas", "Grillades", "Burgers", "Hôtel", "Événements"];
+const QUERIES = {
+  Tout: [],
+  Pizzas: ["artisan pizza wood fired close up", "pizza margherita", "pizza dark restaurant", "pizza oven flames"],
+  Grillades: ["grilled meat charcoal restaurant", "bbq grill flames", "steak grilled close up", "grilled fish plate"],
+  Burgers: ["gourmet burger restaurant dark", "burger smash cheese", "burger fries plate", "burger close up"],
+  Hôtel: ["boutique hotel room tropical", "hotel suite cozy", "hotel lobby warm", "hotel pool tropical"],
+  Événements: ["restaurant private event decoration", "wedding table setting", "birthday party restaurant", "candlelit dinner"]
+};
+const PHOTOS = Object.keys(QUERIES).filter((c) => c !== "Tout").flatMap((c) => QUERIES[c].map((q) => ({
+  cat: c,
+  src: `/images/gallery-${encodeURIComponent(q).replace(/%/g, "_")}.jpg`
+})));
+function GalleryPage() {
+  const [filter, setFilter] = reactExports.useState("Tout");
+  const [idx, setIdx] = reactExports.useState(null);
+  const photos = filter === "Tout" ? PHOTOS : PHOTOS.filter((p) => p.cat === filter);
+  const close = () => setIdx(null);
+  const prev = () => setIdx((i) => i === null ? null : (i + photos.length - 1) % photos.length);
+  const next = () => setIdx((i) => i === null ? null : (i + 1) % photos.length);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(PageTransition, { k: "gallery", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "relative flex h-[55vh] items-end overflow-hidden", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/images/hero-gallery.jpg", alt: "Ambiance Villa Blanca", className: "absolute inset-0 h-full w-full object-cover" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 hero-overlay" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 mx-auto w-full max-w-7xl px-6 pb-14 text-warm-white md:px-8", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-accent text-xs uppercase tracking-[0.4em] text-gold", children: "Galerie" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mt-2 font-display text-5xl md:text-7xl", children: "Notre Univers" })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sticky top-[68px] z-30 border-b border-border bg-warm-white/95 backdrop-blur", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto flex max-w-7xl flex-wrap gap-2 px-6 py-4 md:px-8", children: FILTERS.map((f) => /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setFilter(f), className: `rounded-full px-4 py-1.5 text-sm transition ${filter === f ? "bg-ember text-warm-white" : "border border-border text-charcoal/70"}`, children: f }, f)) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "bg-warm-white py-12", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto max-w-7xl px-6 md:px-8", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "columns-2 gap-4 md:columns-3 lg:columns-4", children: photos.map((p, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setIdx(i), className: "mb-4 block w-full overflow-hidden rounded-xl", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: p.src, alt: p.cat, loading: "lazy", className: "w-full object-cover transition hover:scale-[1.03]" }) }, i)) }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: idx !== null && /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
+      opacity: 0
+    }, animate: {
+      opacity: 1
+    }, exit: {
+      opacity: 0
+    }, className: "fixed inset-0 z-[100] flex items-center justify-center bg-charcoal/95 p-4", onClick: close, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "absolute right-4 top-4 text-warm-white", onClick: close, "aria-label": "Fermer", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-7 w-7" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "absolute left-4 text-warm-white", onClick: (e) => {
+        e.stopPropagation();
+        prev();
+      }, "aria-label": "Précédent", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "h-9 w-9" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: photos[idx].src, alt: "", className: "max-h-[85vh] max-w-[90vw] rounded-xl object-contain", onClick: (e) => e.stopPropagation() }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "absolute right-4 text-warm-white", onClick: (e) => {
+        e.stopPropagation();
+        next();
+      }, "aria-label": "Suivant", style: {
+        top: "50%"
+      }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "h-9 w-9" }) })
+    ] }) })
+  ] });
+}
+export {
+  GalleryPage as component
+};

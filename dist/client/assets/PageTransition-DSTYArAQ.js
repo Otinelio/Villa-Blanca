@@ -1,0 +1,1 @@
+import{m as i,A as e,n}from"./index-1Db3tkMT.js";function s({children:t,k:a}){return i.jsx(e,{mode:"wait",children:i.jsx(n.div,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},exit:{opacity:0,y:-10},transition:{duration:.4,ease:"easeOut"},children:t},a)})}export{s as P};

@@ -1,0 +1,1 @@
+import{R as r,m as e}from"./index-1Db3tkMT.js";import{Q as o}from"./QrOrderFlow-1SasZuEH.js";import"./menu-Dp2SMWCT.js";import"./ordersStore-p_1RfUUP.js";import"./check-CS6NpATr.js";function n(){const{tableNumber:t}=r.useParams();return e.jsx(o,{type:"table",number:t,title:"Commande sur place",subtitle:`Table ${t}`})}export{n as component};

@@ -1,0 +1,1 @@
+import{d as o,m as e}from"./index-1Db3tkMT.js";import{Q as t}from"./QrOrderFlow-1SasZuEH.js";import"./menu-Dp2SMWCT.js";import"./ordersStore-p_1RfUUP.js";import"./check-CS6NpATr.js";function u(){const{roomNumber:r}=o.useParams();return e.jsx(t,{type:"room",number:r,title:"Service en chambre",subtitle:`Chambre ${r}`,withDelivery:!0})}export{u as component};
